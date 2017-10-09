@@ -1,0 +1,25 @@
+.row .col.in7 {
+  width: 14.2%;
+  padding: 0 .1rem;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+.row {
+  margin-bottom: 2px;
+}
+
+.in7 .card {
+  margin: .05rem 0 .05rem 0;
+  height: 19.5vh;
+}
+
+.section {
+  padding: 0;
+}
+
+.material-icons:hover {
+  color: yellow;
+  cursor: pointer;
+}

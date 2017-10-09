@@ -1,0 +1,16 @@
+{
+  "name": "starchart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "watch-http-server -p 8083"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "watch-http-server": "^0.7.6"
+  }
+}
