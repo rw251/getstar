@@ -54,5 +54,5 @@ $(document).ready(function () {
 
   wireUpCards();
 
-  $('#fullpage').fullpage();
+  //$('#fullpage').fullpage();
 });
