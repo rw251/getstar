@@ -19,7 +19,85 @@
   padding: 0;
 }
 
-.material-icons:hover {
+.material-icons.star:hover {
   color: yellow;
   cursor: pointer;
+}
+
+.material-icons.sad:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.pulsate-left {
+  -webkit-animation: pulsate-left 1s forwards;
+}
+
+.pulsate-right {
+  -webkit-animation: pulsate-right 1s forwards;
+}
+
+.fade {
+  -webkit-animation: fade 1s forwards;
+}
+
+.result {
+  position: absolute;
+  color: white;
+  width: 0;
+  right:0;
+  top:0;
+  z-index: -2;
+  transform: rotateY(180deg);
+}
+
+.flip {
+  transition: 0.6s;
+	transform-style: preserve-3d;
+  transform: rotateY(180deg);
+}
+
+.flip .result {
+  color: black;
+  width:100%;
+}
+
+@-webkit-keyframes pulsate-left {
+  0% {
+    -webkit-transform: scale(1, 1); 
+    opacity: 1.0;
+  }
+  50% {
+    -webkit-transform: scale(2, 2) translate(-0.98rem);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translate(-1.96rem);
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes pulsate-right {
+  0% {
+    -webkit-transform: scale(1, 1);
+    opacity: 1.0;
+  }
+  50% {
+    -webkit-transform: scale(2, 2) translate(0.98rem);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translate(1.96rem);
+    opacity: 0.8;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    -webkit-transform: scale(1, 1); 
+    opacity: 1.0;
+  }
+  100% {
+    -webkit-transform: scale(0, 0); 
+    opacity: 0.1;
+  }
 }
