@@ -76,6 +76,10 @@
   cursor: pointer;
 }
 
+.card-wrapper.flip {
+  cursor: pointer;
+}
+
 .pulsate-left {
   -webkit-animation: pulsate-left 1s forwards;
 }

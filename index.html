@@ -6,56 +6,85 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Star Chart</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#212121">
 
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
   <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
 
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
 </head>
 
 <body>
   <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+  <noscript>
+    <p>Sorry. You need JavaScript enabled to view this.</p>
+  </noscript>
 
-  <!-- Add your site or application content here -->
   <div id="fullpage">
-    <div class="section o1"></div>
-    <div class="section o2"></div>
-    <div class="section o3"></div>
-    <div class="section o4"></div>
+    
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.5.2/localforage.min.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    // Add css as deferred resource
+    var deferredFonts = document.createElement('link');
+    deferredFonts.rel = 'stylesheet';
+    deferredFonts.href = 'https://fonts.googleapis.com/icon?family=Material+Icons';
+    var godefer = document.getElementsByTagName('link')[0];
+    godefer.parentNode.insertBefore(deferredFonts, godefer);
+
+    deferredFonts = document.createElement('link');
+    deferredFonts.rel = 'stylesheet';
+    deferredFonts.href = 'css/main.css';
+    godefer = document.getElementsByTagName('link')[0];
+    godefer.parentNode.insertBefore(deferredFonts, godefer);
+
+    deferredFonts = document.createElement('link');
+    deferredFonts.rel = 'stylesheet';
+    deferredFonts.href = 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css';
+    godefer = document.getElementsByTagName('link')[0];
+    godefer.parentNode.insertBefore(deferredFonts, godefer);
+  </script>
 
   <script id="dayTemplate" type="x-tmpl-mustache">
     <div class="col in7">
-      <div class="card-wrapper flow-text">
-        <div class="card grey darken-4">
-          <div class="card-content white-text center">
-            <span class="card-title">{{date}}</span>
-            <i class="medium material-icons star">star_border</i>
-            <i class="medium material-icons sad">sentiment_very_dissatisfied</i>
+      <div class="card-wrapper {{#isStar}}flip{{/isStar}}{{#isSad}}flip{{/isSad}}" data-date="{{date}}">
+        {{^isFuture}}
+          <div class="card grey darken-4">
+            <div class="card-content white-text center">
+              <span class="card-title">{{date}}</span>
+              <i class="medium material-icons star">star_border</i>
+              <i class="medium material-icons sad">sentiment_very_dissatisfied</i>
+            </div>
           </div>
+          <div class="card result {{#isStar}}yellow{{/isStar}}{{#isSad}}red{{/isSad}}">
+            <div class="card-content center">
+              <span class="card-title">{{date}}</span>
+              <i class="medium material-icons flipped">{{#isStar}}star{{/isStar}}{{#isSad}}sentiment_very_dissatisfied{{/isSad}}</i>
+            </div>
           </div>
-        <div class="card result">
-          <div class="card-content center">
-            <span class="card-title">{{date}}</span>
-            <i class="medium material-icons">star</i>
+        {{/isFuture}}
+        {{#isFuture}}
+          <div class="card white">
+            <div class="card-content center">
+              <span class="card-title">{{date}}</span>
+            </div>
           </div>
-        </div>
+        {{/isFuture}}
       </div>
     </div>
   </script>
